@@ -10,196 +10,141 @@
       font-family: 'Playfair Display', serif;
       background: url('3.png') no-repeat center center/cover;
       color: white;
-      min-height: 100vh;
     }
-
-    /* Header */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: -1;
+    }
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 15px 40px;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(6px);
-      z-index: 1000;
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      position: relative;
     }
-    header img {
-      height: 50px;
-      margin-right: 15px;
-    }
-    header h1 {
-      color: #d4af37;
-      font-size: 28px;
-      margin: 0;
-      letter-spacing: 2px;
-    }
+    header h1 { color: #d4af37; }
     .cart-icon {
       position: absolute;
-      right: 40px;
+      top: 20px;
+      right: 20px;
       cursor: pointer;
-      font-size: 20px;
-      background: linear-gradient(135deg,#d4af37,#b8860b);
+      font-size: 22px;
+      background: #d4af37;
       color: white;
       padding: 8px 15px;
-      border-radius: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
+      border-radius: 20px;
     }
-    .cart-icon:hover {
-      transform: scale(1.05);
-      background: linear-gradient(135deg,#b8860b,#d4af37);
-    }
-
-    /* Content */
     .container {
-      padding: 140px 20px 60px;
-      max-width: 850px;
+      padding: 60px 20px;
+      max-width: 800px;
       margin: auto;
       text-align: center;
     }
-    .container h2 {
-      font-size: 42px;
-      color: #d4af37;
-      margin-bottom: 20px;
-    }
     .container img {
-      max-width: 280px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-      transition: transform 0.4s ease;
+      max-width: 250px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     }
-    .container img:hover { transform: scale(1.05); }
-    .container p {
-      margin: 20px 0;
-      font-size: 18px;
-      line-height: 1.8;
-      color: #f0f0f0;
-    }
-    .price {
-      font-size: 22px;
-      font-weight: bold;
-      color: #d4af37;
-    }
+    h2 { color: #d4af37; }
     button {
       margin-top: 20px;
-      background: linear-gradient(135deg,#d4af37,#b8860b);
+      background: #d4af37;
       color: white;
       border: none;
-      padding: 12px 28px;
+      padding: 12px 25px;
       cursor: pointer;
-      border-radius: 30px;
-      font-size: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
+      border-radius: 25px;
     }
-    button:hover {
-      transform: translateY(-3px);
-      background: linear-gradient(135deg,#b8860b,#d4af37);
-    }
-
-    /* Cart Drawer */
     .cart-drawer {
       position: fixed;
       top: 0;
       right: -350px;
-      width: 320px;
+      width: 300px;
       height: 100%;
-      background: #111;
-      box-shadow: -6px 0 20px rgba(0,0,0,0.5);
-      transition: right 0.4s ease;
-      padding: 25px;
+      background: #fff;
+      box-shadow: -4px 0 15px rgba(0,0,0,0.3);
+      transition: right 0.3s ease;
+      padding: 20px;
       overflow-y: auto;
       z-index: 2000;
-      color: white;
-      font-family: 'Arial', sans-serif;
+      color: black;
     }
     .cart-drawer.open { right: 0; }
     .cart-drawer h2 { color: #d4af37; margin-top: 0; }
-    .cart-item {
-      padding: 10px;
-      margin-bottom: 10px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .close-btn { cursor: pointer; color: #d4af37; font-weight: bold; }
-    .cart-total { margin-top: 20px; font-size: 18px; font-weight: bold; color: #d4af37; }
+    .cart-item { margin: 10px 0; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+    .cart-total { font-weight: bold; margin-top: 20px; }
+    .close-btn { cursor: pointer; color: red; float: right; }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Al Zehra</h1>
+    <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+  </header>
 
-<header>
-  <img src="logo.png" alt="Al Zehra Logo">
-  <h1>Al Zehra</h1>
-  <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
-</header>
+  <div class="container">
+    <h2>Destiny</h2>
+    <img src="p1.jpg" alt="Destiny Perfume"/>
+    <p style="margin:20px 0; font-size:18px; line-height:1.8;">
+      Destiny is more than a fragrance—it’s a journey written in scent.  
+      A delicate balance of fresh florals, warm woods, and subtle musk, this perfume embodies grace, confidence, and timeless allure.  
+      With every note, Destiny reminds you that some moments are meant to be.
+    </p>
+    <p style="font-size:20px; font-weight:bold;">2000 PKR</p>
+    <button onclick="addToCart('Destiny',2000)">Add to Cart</button>
+    <br>
+    <button onclick="window.location.href='index.html'">⬅ Back to Home</button>
+  </div>
 
-<div class="container">
-  <h2>Destiny</h2>
-  <img src="p2.jpg" alt="Destiny Perfume"/>
-  <p>
-    Destiny is more than a fragrance—it’s a journey written in scent.  
-    A delicate balance of fresh florals, warm woods, and subtle musk,  
-    this perfume embodies grace, confidence, and timeless allure.  
-    With every note, Destiny reminds you that some moments are meant to be.
-  </p>
-  <p class="price">2000 PKR</p>
-  <button onclick="addToCart('Destiny',2000)">Add to Cart</button>
-  <br>
-  <button onclick="window.location.href='index.html'">⬅ Back to Home</button>
-</div>
+  <!-- Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <span class="close-btn" onclick="toggleCart()">✖</span>
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-total" id="cart-total"></div>
+  </div>
 
-<!-- Cart Drawer -->
-<div class="cart-drawer" id="cartDrawer">
-  <span class="close-btn" onclick="toggleCart()">✖</span>
-  <h2>Your Cart</h2>
-  <div id="cart-items"></div>
-  <div class="cart-total" id="cart-total"></div>
-  <button onclick="window.location.href='checkout.html'">Checkout</button>
-</div>
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-<script>
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    function toggleCart(){
+      document.getElementById("cartDrawer").classList.toggle("open");
+      renderCart();
+    }
 
-  function toggleCart() {
-    document.getElementById("cartDrawer").classList.toggle("open");
+    function addToCart(name, price){
+      cart.push({name, price});
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+      alert(name + " added to cart!");
+    }
+
+    function renderCart(){
+      let itemsDiv = document.getElementById("cart-items");
+      let totalDiv = document.getElementById("cart-total");
+      itemsDiv.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        itemsDiv.innerHTML += `
+          <div class="cart-item">
+            ${item.name} - ${item.price} PKR
+            <span class="close-btn" onclick="removeItem(${index})">x</span>
+          </div>`;
+      });
+      totalDiv.innerHTML = "Total: " + total + " PKR";
+      document.getElementById("cart-count").innerText = cart.length;
+    }
+
+    function removeItem(index){
+      cart.splice(index,1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
     renderCart();
-  }
-  function addToCart(name, price) {
-    cart.push({name, price});
-    localStorage.setItem('cart', JSON.stringify(cart));
-    renderCart();
-    alert(name + " added to cart!");
-  }
-  function renderCart() {
-    let itemsDiv = document.getElementById("cart-items");
-    let totalDiv = document.getElementById("cart-total");
-    itemsDiv.innerHTML = "";
-    let total = 0;
-    cart.forEach((item, index) => {
-      total += item.price;
-      itemsDiv.innerHTML += `
-        <div class="cart-item">
-          ${item.name} - ${item.price} PKR
-          <span class="close-btn" onclick="removeItem(${index})">x</span>
-        </div>`;
-    });
-    totalDiv.innerHTML = "Total: " + total + " PKR";
-    document.getElementById("cart-count").innerText = cart.length;
-  }
-  function removeItem(index) {
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    renderCart();
-  }
-  renderCart();
-</script>
-
+  </script>
 </body>
 </html>
