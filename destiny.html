@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Destiny - Al Zehra Perfumes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background: url('3.png') no-repeat center center/cover;
+      color: white;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: -1;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      position: relative;
+    }
+ header img {
+      height: 150px;
+    }
+    header h1 { color: #d4af37; }
+    .cart-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      font-size: 22px;
+      background: #d4af37;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+    }
+    .container {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+    .container img :hover { transform: scale(1.08); }
+	.container p {
+      margin: 20px auto;
+      font-size: 20px;
+      line-height: 1.9;
+      color: #f5f5f5;
+      max-width: 700px;
+    }
+    
+    h2 { color: #d4af37; }
+    button {
+      margin-top: 20px;
+      background: #d4af37;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      cursor: pointer;
+      border-radius: 25px;
+    }
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 300px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -4px 0 15px rgba(0,0,0,0.3);
+      transition: right 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+      z-index: 2000;
+      color: black;
+    }
+    .cart-drawer.open { right: 0; }
+    .cart-drawer h2 { color: #d4af37; margin-top: 0; }
+    .cart-item { margin: 10px 0; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+    .cart-total { font-weight: bold; margin-top: 20px; }
+    .close-btn { cursor: pointer; color: red; float: right; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Al Zehra</h1>
+	<img src="logo.png" alt="Al Zehra Logo">
+    <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+  </header>
+
+  <div class="container">
+    <h2>Destiny</h2>
+    <img src="p2.jpg" alt="Destiny Perfume"/>
+    <p style="margin:20px 0; font-size:18px; line-height:1.8;">
+      Destiny is more than a fragrance—it’s a journey written in scent.  
+      A delicate balance of fresh florals, warm woods, and subtle musk, this perfume embodies grace, confidence, and timeless allure.  
+      With every note, Destiny reminds you that some moments are meant to be.
+    </p>
+    <p style="font-size:20px; font-weight:bold;">2000 PKR</p>
+    <button onclick="addToCart('Destiny',2000)">Add to Cart</button>
+    <br>
+    <button onclick="window.location.href='index.html'">⬅ Back to Home</button>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+  <span class="close-btn" onclick="toggleCart()">✖</span>
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <div class="cart-total" id="cart-total"></div>
+  <button onclick="window.location.href='checkout.html'">Checkout</button>
+</div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function toggleCart(){
+      document.getElementById("cartDrawer").classList.toggle("open");
+      renderCart();
+    }
+
+    function addToCart(name, price){
+      cart.push({name, price});
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+      alert(name + " added to cart!");
+    }
+
+    function renderCart(){
+      let itemsDiv = document.getElementById("cart-items");
+      let totalDiv = document.getElementById("cart-total");
+      itemsDiv.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        itemsDiv.innerHTML += `
+          <div class="cart-item">
+            ${item.name} - ${item.price} PKR
+            <span class="close-btn" onclick="removeItem(${index})">x</span>
+          </div>`;
+      });
+      totalDiv.innerHTML = "Total: " + total + " PKR";
+      document.getElementById("cart-count").innerText = cart.length;
+    }
+
+    function removeItem(index){
+      cart.splice(index,1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
