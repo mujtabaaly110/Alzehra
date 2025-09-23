@@ -25,12 +25,15 @@
             background: url('3.png') no-repeat center center/cover;
             position: relative;
             color: #333;
+		font-size: 35px;
         }
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(to bottom right, rgba(192, 172, 135, 0.3), rgba(255,255,255,0.6));
+font-size: 35px;
+
             z-index: 0;
         }
         header {
@@ -43,24 +46,24 @@
         }
         header h1 {
             margin: 0;
-            font-size: 100px;
+            font-size: 70px;
             font-weight: bold;
             color: #d4af37;
         }
         header img {
-            height: 105px;
+            height: 250px;
             margin-top: 5px;
         }
         .container {
-            padding: 60px 30px;
-            max-width: 800px;
+            padding: 60px 20px;
+            max-width: 1800px;
             margin: auto;
             text-align: center;
         }
         .container img {
-      max-width: 250px;
-      border-radius: 40px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 60px 20px rgba(0,0,0,0.4);
     }
     .hero {
       display: flex;
@@ -73,20 +76,20 @@
       flex-direction: column;
     }
     .hero h2 {
-      font-size: 50px;
+      font-size: 100px;
       margin-bottom: 20px;
       color: #222;
     }
    .hero-images {
       position: relative;
-      width: 50%;
+      width: 20%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     .hero-images img {
       max-height: 200px;
-      border-radius: 40px;
+      border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       position: absolute;
     }
@@ -109,18 +112,20 @@
         }
         .product {
             background: #fff;
-            border-radius: 30px;
-            box-shadow: 0 6px 30px rgba(0,0,0,0.15);
-            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            padding: 20px;
             text-align: center;
-            width: 400px;
+            width: 1600px;
         }
         .product h3 {
-      margin: 60px 0 40px;
+      margin: 15px 0 30px;
+	font-size: 60px;
     }
     .product p {
-      margin: 10px 0;
+      margin: 5px 0;
       font-weight: bold;
+	font-size: 50px;
       color: #444;
     }
     .product button {
@@ -129,7 +134,7 @@
       border: none;
       padding: 10px 20px;
       cursor: pointer;
-      border-radius: 25px;
+      border-radius: 40px;
     }
         .cart-icon {
             position: absolute;
@@ -156,10 +161,11 @@
 }
         footer {
             background:#111;
-            color:white;
-            text-align:center;
-            padding:40px 20px;
-            margin-top:40px;
+          width: 100%;
+            background-color: black;
+            text-align: center;
+            padding: 20px 0;
+            z-index: 1000;
         }
         footer h3 {
             color:#d4af37;
@@ -260,8 +266,8 @@
     </div>
 <!-- About Us Section -->
 <section id="about" class="fade-in" style="padding:80px 20px; text-align:center; background:#1a1a1a; color:white;">
-  <h2 style="color:#d4af37; font-family:'Playfair Display', serif; font-size:32px;">About Al Zehra</h2>
-  <p style="max-width:800px; margin:20px auto; font-size:18px; line-height:1.8;">
+  <h2 style="color:#d4af37; font-family:'Playfair Display', serif; font-size:60px;">About Al Zehra</h2>
+  <p style="max-width:800px; margin:20px auto; font-size:40px; line-height:1.8;">
     At <span style="color:#d4af37;">Al Zehra</span>, we believe perfume is more than fragrance — it is an expression of elegance and individuality. 
     Our signature scents, Destiny and Fantasy, are crafted with precision, using premium ingredients for a long-lasting impression.
   </p>
@@ -307,7 +313,7 @@
 <section id="why" class="fade-in" style="padding:80px 20px; text-align:center; background:#1a1a1a; color:white;">
   <h2 style="color:#d4af37; font-family:'Playfair Display', serif; font-size:32px;">Why Choose Us</h2>
   <div style="display:flex; justify-content:center; gap:50px; flex-wrap:wrap; margin-top:40px;">
-    <div style="width:250px;">
+    <div style="width:100%;">
       <h3 style="color:#d4af37;">Premium Ingredients</h3>
       <p>We use only the finest oils and extracts to create long-lasting scents.</p>
     </div>
@@ -337,7 +343,4 @@
 
 
 </body>
-
 </html>
-
-
