@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Al Zehra Perfumes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background: url('3.png') no-repeat center center/cover;
+            color: #333;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        h2 {
+            color: #d4af37;
+        }
+
+        .checkout-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin: auto;
+            max-width: 600px;
+        }
+
+        input, select {
+            margin: 10px 0;
+            padding: 15px;
+            width: 90%;
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus, select:focus {
+            border-color: #333;
+            outline: none;
+        }
+
+        button {
+            background: #d4af37;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #bda720;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .whatsapp {
+            display: inline-block;
+            font-size: 40px;
+            color: #25D366; /* WhatsApp color */
+            margin-top: 20px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .whatsapp:hover {
+            transform: scale(1.1); /* Scale effect on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Checkout</h2>
+    <div class="checkout-container">
+        <form id="checkout-form" onsubmit="sendWhatsApp(event)">
+            <input type="text" id="first-name" placeholder="First Name" required>
+            <input type="text" id="last-name" placeholder="Last Name" required>
+            <input type="text" id="address" placeholder="Complete Address" required>
+            <select id="payment-method" required>
+                <option value="">Select Payment Method</option>
+                <option value="COD">Cash on Delivery</option>
+                <option value="Pre Paid">Pre Paid</option>
+            </select>
+            <button type="submit">Send via WhatsApp</button>
+        </form>
+        <a class="whatsapp" href="https://wa.me/923353037368" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        function sendWhatsApp(event) {
+            event.preventDefault(); // Prevent form submission
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const address = document.getElementById('address').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+
+            const message = `New Order:\nName: ${firstName} ${lastName}\nAddress: ${address}\nPayment Method: ${paymentMethod}`;
+            const whatsappNumber = "923353037368"; // Updated WhatsApp number
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURI(message)}`;
+
+            window.open(url, '_blank'); // Open WhatsApp chat in a new tab
+        }
+    </script>
+
+    <p class="footer">We value your privacy and will not share your details with anyone.</p>
+</body>
+</html>

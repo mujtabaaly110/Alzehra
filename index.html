@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Al Zehra Perfumes</title>
+    <style>
+        /* Fade-in Up Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  will-change: opacity, transform;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+        
+
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background: url('3.png') no-repeat center center/cover;
+            position: relative;
+            color: #333;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom right, rgba(192, 172, 135, 0.3), rgba(255,255,255,0.6));
+            z-index: 0;
+        }
+        header {
+            top: 0; left: 0;
+            width: 100%;
+            background-color: black;
+            text-align: center;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: bold;
+            color: #d4af37;
+        }
+        header img {
+            height: 75px;
+            margin-top: 5px;
+        }
+        .container {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+        .container img {
+      max-width: 250px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 150px 20px 100px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      flex-direction: column;
+    }
+    .hero h2 {
+      font-size: 38px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+   .hero-images {
+      position: relative;
+      width: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-images img {
+      max-height: 200px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      position: absolute;
+    }
+    .hero-images img:first-child {
+      transform: translateX(-40px) rotate(-5deg);
+      z-index: 1;
+    }
+    .hero-images img:last-child {
+      transform: translateX(40px) rotate(5deg);
+      z-index: 2;
+    }
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 50px;
+            z-index: 1;
+            position: relative;
+            flex-wrap: wrap;
+        }
+        .product {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+        }
+        .product h3 {
+      margin: 15px 0 10px;
+    }
+    .product p {
+      margin: 5px 0;
+      font-weight: bold;
+      color: #444;
+    }
+    .product button {
+      background: #d4af37;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 25px;
+    }
+        .cart-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 22px;
+            background: #d4af37;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        .whatsapp {
+    display: inline-block;
+    font-size: 20px;
+    color: #25D366; /* WhatsApp color */
+    margin-top: 20px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.whatsapp:hover {
+    transform: scale(1.1); /* Scale effect on hover */
+}
+        footer {
+            background:#111;
+            color:white;
+            text-align:center;
+            padding:40px 20px;
+            margin-top:40px;
+        }
+        footer h3 {
+            color:#d4af37;
+        }
+        /* Cart Drawer */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 300px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.3);
+            transition: right 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 2000;
+        }
+        .cart-drawer.open { right: 0; }
+    </style>
+</head>
+<body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.1 };
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        faders.forEach(fader => appearOnScroll.observe(fader));
+    });
+</script>
+
+<header>
+    <h1>Al Zehra</h1>
+    <img src="logo.png" alt="Logo"/>
+    <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+</header>
+
+
+</section>
+
+
+
+<!-- Cart Drawer -->
+<div class="cart-drawer" id="cartDrawer">
+    <span class="close-btn" onclick="toggleCart()">✖</span>
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-total" id="cart-total"></div>
+    <button onclick="window.location.href='checkout.html'" style="background: #d4af37; color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">Checkout</button>
+</div>
+
+<script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function toggleCart() {
+        document.getElementById("cartDrawer").classList.toggle("open");
+        renderCart();
+    }
+
+    function renderCart() {
+        let itemsDiv = document.getElementById("cart-items");
+        let totalDiv = document.getElementById("cart-total");
+        itemsDiv.innerHTML = "";
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price;
+            itemsDiv.innerHTML += `
+                <div class="cart-item">${item.name} - ${item.price} PKR
+                <span class="close-btn" onclick="removeItem(${index})">x</span></div>`;
+        });
+        totalDiv.innerHTML = "Total: " + total + " PKR";
+        document.getElementById("cart-count").innerText = cart.length;
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+    }
+
+    renderCart();
+</script>
+ <section class="hero">
+    <h2>Luxury Scents— Curated for You</h2> 
+    <p>Explore our signature fragrances: Destiny and Fantasy. Elegance, crafted for timeless memories.</p>
+  </section>
+<div class="hero-images">
+      <img src="p1.jpg" alt="Perfume Bottle 1"/>
+      <img src="p2.jpg" alt="Perfume Bottle 2"/>
+    
+    </div>
+<!-- About Us Section -->
+<section id="about" class="fade-in" style="padding:80px 20px; text-align:center; background:#1a1a1a; color:white;">
+  <h2 style="color:#d4af37; font-family:'Playfair Display', serif; font-size:32px;">About Al Zehra</h2>
+  <p style="max-width:800px; margin:20px auto; font-size:18px; line-height:1.8;">
+    At <span style="color:#d4af37;">Al Zehra</span>, we believe perfume is more than fragrance — it is an expression of elegance and individuality. 
+    Our signature scents, Destiny and Fantasy, are crafted with precision, using premium ingredients for a long-lasting impression.
+  </p>
+<div class="container">
+  <section class="products">
+    <div class="product">
+<h3 style="color: goldenrod;">Destiny</h3>
+    <img src="p2.jpg" alt="Destiny Perfume"/>
+      <p>2000 PKR</p>
+      <button onclick="window.location.href='destiny.html'">See More</button>
+    </div>
+    <div class="product">
+      <h3 style="color: goldenrod;">Fantasy</h3>
+    <img src="p1.jpg" alt="Fantasy Perfume"/>
+      <p>2000 PKR</p>
+      <button onclick="window.location.href='fantasy.html'">See More</button>
+    </div>
+  </section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="fade-in" style="padding:80px 20px; background:#111; color:white;">
+  <h2 style="color:#d4af37; text-align:center; font-family:'Playfair Display', serif; font-size:32px;">What Our Customers Say</h2>
+  <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:30px; margin-top:40px;">
+    <div style="background:#1a1a1a; padding:30px; border-radius:10px; width:280px; box-shadow:0 0 10px rgba(0,0,0,0.5);">
+      <p>"Destiny is my go-to scent for special occasions — elegant and unforgettable!"</p>
+      <p style="color:#d4af37;">★★★★★</p>
+      <p>- Ayesha</p>
+    </div>
+    <div style="background:#1a1a1a; padding:30px; border-radius:10px; width:280px; box-shadow:0 0 10px rgba(0,0,0,0.5);">
+      <p>"Fantasy lasts all day and always gets compliments. Highly recommended!"</p>
+      <p style="color:#d4af37;">★★★★★</p>
+      <p>- Sara</p>
+    </div>
+    <div style="background:#1a1a1a; padding:30px; border-radius:10px; width:280px; box-shadow:0 0 10px rgba(0,0,0,0.5);">
+      <p>"Al Zehra perfumes bring luxury at an affordable price. Absolutely love it!"</p>
+      <p style="color:#d4af37;">★★★★★</p>
+      <p>- Ali</p>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section id="why" class="fade-in" style="padding:80px 20px; text-align:center; background:#1a1a1a; color:white;">
+  <h2 style="color:#d4af37; font-family:'Playfair Display', serif; font-size:32px;">Why Choose Us</h2>
+  <div style="display:flex; justify-content:center; gap:50px; flex-wrap:wrap; margin-top:40px;">
+    <div style="width:250px;">
+      <h3 style="color:#d4af37;">Premium Ingredients</h3>
+      <p>We use only the finest oils and extracts to create long-lasting scents.</p>
+    </div>
+    <div style="width:250px;">
+      <h3 style="color:#d4af37;">Elegant Packaging</h3>
+      <p>Our bottles are designed to be as luxurious as the fragrances inside.</p>
+    </div>
+    <div style="width:250px;">
+      <h3 style="color:#d4af37;">Affordable Luxury</h3>
+      <p>Experience premium quality perfumes at an accessible price.</p>
+    </div>
+  </div>
+</section>
+
+
+  <footer>
+    <h3>Al Zehra</h3>
+    <p>Luxury Scents — Curated for You</p>
+    <a class="whatsapp" href="https://wa.me/923353037368" target="_blank" style="color:var(--gold);text-decoration:none;margin-left:8px">Chat on WhatsApp</a>
+    <a class="whatsapp" href="https://wa.me/923353037368" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+    <p>Contact: info@alzehra.com</p>
+    <p style="margin-top:20px; font-size:14px; color:#aaa;">© 2025 Al Zehra Perfumes. All Rights Reserved.</p>
+    
+  </footer>
+
+
+</body>
+</html>
