@@ -180,6 +180,14 @@ button:hover {
 <h1>Al Zehra</h1>
 <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
 </header>
+  <div class="cart-drawer" id="cartDrawer">
+    <span class="close-btn" onclick="toggleCart()">✖</span>
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-total" id="cart-total"></div>
+    <!-- ADD THIS BUTTON -->
+    <button onclick="window.location.href='checkout.html'" style="background: #d4af37; color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">Checkout</button>
+</div>
 
 <div class="container">
 <div class="ribbon">Limited Edition</div>
@@ -224,4 +232,5 @@ renderCart();
 
 </body>
 </html>
+
 
